@@ -1,24 +1,11 @@
-"""django1 URL Configuration
+from django.urls import path
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path, include
+from employees.employee.views import department_details, departments_list, not_found
 
-from django1.tasks.views import home
+urlpatterns = (
+    path('<int:id>/', department_details),
+    path('<str:id>/', department_details, name='department details'),  # departments/ID =>
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('django1.tasks.urls')),
-]
+    path('', departments_list, name='list departments'),
+    path('not-found/', not_found),
+)

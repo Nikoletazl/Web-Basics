@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ title }} (Original)</h1>
+    <h1>{{ title|lower }} (lower)</h1> {# kind of like map #}
+    <h1>{{ title|capfirst }} (capfirst)</h1>
+    {#<h1>{{ title|increase_by:1000 }}</h1>#}
+    <hr/>
+    <p>{{ description }} (original)</p>
+    <p>{{ description|truncatewords:7 }} (truncatewords:7)</p>
+    <p>{{ description|truncatewords:10 }} (truncatewords:10)</p>
+    <p>{{ description|truncatechars:7 }} (truncating:7)</p>
+    <p>{{ description|truncatechars:10 }} (truncating:10)</p>
+
+</body>
+</html>

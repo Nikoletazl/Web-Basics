@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <div class="d-flex">
+        <div class="d-inline p-2 w-50">
+            <!-- Image -->
+            <img src="https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGV0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                 class="w-100 rounded mx-auto d-block" alt="Photo description">
+        </div>
+        <div class="d-inline p-2 w-50">
+            <!-- Info for First Pet -->
+            <div class="d-flex justify-content-around">
+                <h5><u>Type:</u> Cat</h5>
+                <h5><u>Name:</u> Andrew</h5>
+                <h5><u>Age:</u> 3</h5>
+            </div>
+            <!-- Info for Second Pet -->
+            <div class="d-flex justify-content-around">
+                <h5><u>Type:</u> Dog</h5>
+                <h5><u>Name:</u> Otto</h5>
+            </div>
+            <!-- Description -->
+            <p class="mt-2">Description: This is Andrew the cat, and Otto the dog. There are in the park, laying on the
+                grass.</p>
+            <!-- Likes Button -->
+            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <!-- Likes Counter -->
+            <p class="mt-2">Likes: 21</p>
+            <!-- Buttons -->
+            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+{% endblock %}

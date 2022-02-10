@@ -1,54 +1,40 @@
 {% extends 'base.html' %}
 {% block page_content %}
 
- <!-- If there are NO pet photos -->
-    <h1 class='text-center'>No pet photos yet</h1>
-    <div class=" row d-flex justify-content-center align-content-center">
-        <!-- Button to Add a new Photo -->
-        <a href="#" class="btn btn-lg btn-secondary row align-self-baseline">Add Photo</a>
-    </div>
+    <h1 class='text-center'>
+        {% if pet_photos %}
+            All Pet Photos
+        {% else %}
+            No pet photos yet
+        {% endif %}
+    </h1>
 
-    <!-- If there are pet photos -->
-    <h1 class='text-center'>All Pet Photos</h1>
-    <div class="container mb-5">
-        <div class="row mb-5">
+    {% if pet_photos %}
+        <div class="container mb-5">
+            <div class="row mb-5">
+                {% for pet_pohoto in pet_photos %}
+                <div class="card ml-3 mb-3" style="width: 18rem;">
+                    <img src="{{ pet_photo.photo.url }}"
+                         class="card-img-top" alt="Photo description">
+                    <div class="card-body">
+                        {% for pet in pet_photo.tagged_pets.all %}
+                            <h5 class="card-title">{{ pet.name }}{% if pet.date_of_birth %}
+                                {{ pet.age }}
+                            {% endif %}</h5>
+                        {% endfor %}
+                        <p class="card-text">{{ pet_photo.description|truncatechars:30 }}</p>
 
-            <!-- First Card with Info for the Pet -->
-            <div class="card ml-3 mb-3" style="width: 18rem;">
-                <!-- Image -->
-                <img src="https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGV0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                     class="card-img-top" alt="Photo description">
-                <div class="card-body">
-                    <!-- Info for each pet on the photo -->
-                    <h5 class="card-title">Andrew, age: 3</h5>
-                    <h5 class="card-title">Otto</h5>
-                    <!-- First 30 chars from the description -->
-                    <p class="card-text">This is Andrew the cat, and Ot</p>
-                    <!-- Button to the Photo Details Page -->
-                    <a href="#" class="btn btn-primary">See details</a>
+                        <a href="{% url 'pet photo details' pet_photo.id %}" class="btn btn-primary">See details</a>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            <!-- End First Card -->
-
-            <!-- Second Card with Info for the Pet -->
-            <div class="card ml-3 mb-3" style="width: 18rem;">
-                <!-- Image -->
-                <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGV0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                     class="card-img-top" alt="Photo description">
-                <div class="card-body">
-                    <!-- Info for each pet on the photo -->
-                    <h5 class="card-title">Oz</h5>
-                    <h5 class="card-title">Betty</h5>
-                    <!-- First 30 chars from the description -->
-                    <p class="card-text">My pets</p>
-                    <!-- Button to the Photo Details Page -->
-                    <a href="#" class="btn btn-primary">See details</a>
-                </div>
-            </div>
-            <!-- End Second Card -->
-
         </div>
-    </div>
-    <!-- End Pet Photos -->
+    {% else %}
+        <div class=" row d-flex justify-content-center align-content-center">
+            <a href="#" class="btn btn-lg btn-secondary row align-self-baseline">Add Photo</a>
+        </div>
+    {% endif %}
 
 {% endblock %}
+

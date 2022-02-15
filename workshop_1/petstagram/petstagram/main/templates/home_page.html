@@ -14,25 +14,14 @@
                     <!-- Button to show if profile created -->
                     <div class="col-lg-6">
                         <p class="lead">
-                            <a href="#" class="btn btn-lg btn-secondary">Enter</a></p>
+                            {% if hp %}
+                                <a href="{% url 'dashboard' %}" class="btn btn-lg btn-secondary">Enter</a></p>
+                            {% else %}
+                                <a href="{% url 'create profile' %}" class="btn btn-lg btn-secondary">Create Profile</a>
+                            {% endif %}
                     </div>
-
-                    <!-- Button to show if profile is NOT created -->
-                    <div class="col-lg-6">
-                        <p class="lead">
-                            <a href="#" class="btn btn-lg btn-secondary">Create Profile</a>
-                        </p>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Page Footer -->
-<footer class="fixed-bottom card-footer ">
-    <div>@2022 Python Web Basics Workshop at SoftUni</div>
-</footer>
-<!-- End Page Footer -->
 {% endblock %}

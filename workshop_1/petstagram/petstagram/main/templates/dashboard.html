@@ -12,7 +12,7 @@
     {% if pet_photos %}
         <div class="container mb-5">
             <div class="row mb-5">
-                {% for pet_pohoto in pet_photos %}
+                {% for pet_photo in pet_photos %}
                 <div class="card ml-3 mb-3" style="width: 18rem;">
                     <img src="{{ pet_photo.photo.url }}"
                          class="card-img-top" alt="Photo description">
@@ -32,9 +32,8 @@
         </div>
     {% else %}
         <div class=" row d-flex justify-content-center align-content-center">
-            <a href="#" class="btn btn-lg btn-secondary row align-self-baseline">Add Photo</a>
+            <a href="{% url 'create pet photo' %}" class="btn btn-lg btn-secondary row align-self-baseline">Add Photo</a>
         </div>
     {% endif %}
 
 {% endblock %}
-

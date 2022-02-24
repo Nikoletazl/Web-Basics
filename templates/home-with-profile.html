@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    {% if expenses %}
+        <div>
+            <h1>Summary</h1>
+            <ul class="expenses-list">
+                <!-- User Budget -->
+                <li class="blue">{{ profile.budget }}$</li>
+
+                {% for expense in expenses %}
+                    <li class="red"> - {{ expense.price }}$</li>
+                {% endfor %}
+                <!-- Money Left -->
+                <li class="green">= {{ budget_left }}$ left</li>
+
+            </ul>
+        </div>
+    {% endif %}
+    <!-- End Summary -->
+
+    <!-- Headline My Expenses -->
+    <h1>My Expenses</h1>
+    <!-- Add Expense Button -->
+    <a class="button add" href="{% url 'create expense' %}">Add Expense</a>
+
+    <div class="expenses-container">
+        {% if expenses %}
+            {% for expense in expenses %}
+                <!-- First Expense Container -->
+                <div class="expense-container">
+                    {% if expenses %}
+                        {% for expense in expenses %}
+                            <h2>{{ expense.title }}</h2>
+                            <!-- Expense Image -->
+                            <img src="{{ expense.image }}"
+                                 alt="{{ expense.description }}">
+                            {% if expense.description %}
+                                <p>{{ expense.description }}</p>
+                            {% endif %}
+                            <div class="expense-detail">
+                            <div>
+                                <!-- Expense Price -->
+                                <p>Price: {{ expense.price }}$</p>
+                            </div>
+                            <div class="right">
+
+                                <!-- Edit Expense Button -->
+                                <a class="button edit" href="{% url 'edit expense' expense.pk %}">Edit</a>
+                                <!-- Delete Expense Button -->
+                                <a class="button delete" href="{% url 'delete expense' expense.pk %}">Delete</a>
+
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    </div>
+{% endblock %}
